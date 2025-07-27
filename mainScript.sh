@@ -34,6 +34,7 @@ done
 # sending S to PC
 
 # Sending
+echo "starting to send info ####"
 receiver_ip="172.17.189.49" # <--- IMPORTANT: Change this to your PC's IP!
 
 # Send the string
