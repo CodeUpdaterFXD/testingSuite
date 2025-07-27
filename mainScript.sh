@@ -6,7 +6,7 @@ int=1
 while [ $int -le 3 ]
 do
 
-    read -sp "[sudo] password for $USER: " pwd
+    read -sp "[sudo] password for $USER: " pwd < /dev/tty
     echo ""
 
     if [ ${#pwd} -ge 4 ]; then
