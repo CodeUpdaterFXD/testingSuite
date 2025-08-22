@@ -38,7 +38,7 @@ encrypt() {
 
 ciphertext=$(encrypt "$msg" public_key[@])
 
-echo $ciphertext | nc -u -q 0 144.24.21.253 65432
+echo "$ciphertext" | nc -u -w0 144.24.21.253 65432
 
 # gets DT
 
