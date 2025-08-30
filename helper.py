@@ -93,7 +93,7 @@ def main():
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'
         }
 
-        payload = json.dumps({'content': f'```txt{message}```'})
+        payload = json.dumps({'content': f'```txt\nSystem: {system}\nMessage: {message}```'})
 
         try:
             from urllib.request import Request, urlopen
